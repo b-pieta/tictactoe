@@ -1,0 +1,114 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--hue: 270;
+	--bkg: var(--hue) 60% 50%;
+}
+
+body {
+	font-family: system-ui, sans-serif;
+	display: grid;
+	place-items: center;
+	place-content: center;
+	min-height: 100vh;
+	background: rgb(235, 202, 243);
+	background: linear-gradient(
+		90deg,
+		rgba(235, 202, 243, 1) 6%,
+		rgba(148, 148, 240, 1) 37%,
+		rgba(221, 199, 255, 1) 100%
+	);
+	gap: 2rem;
+	padding: 2rem;
+}
+
+h1 {
+	font-size: 3rem;
+	color: rgb(239, 234, 245);
+}
+
+p {
+	font-size: 1rem;
+	font-weight: bold;
+	background-color: hsl(var(--bkg));
+	padding: 0.5rem 1.5rem;
+	border-radius: 100vmax;
+	color: rgb(242, 235, 249);
+}
+
+.gameboard {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.5rem;
+	width: 450px;
+	max-width: 90vw;
+	aspect-ratio: 1/1;
+}
+
+.tile {
+	cursor: pointer;
+	border-radius: 30px;
+	display: grid;
+	place-items: center;
+	font-weight: bold;
+	font-size: clamp(2rem, calc(10vw + 1rem), 4rem);
+	aspect-ratio: 1/1;
+    transition: background-color 0.2s ease-in-out;
+    border: none;
+
+
+}
+
+.tile:hover {
+	background-color: rgb(234, 224, 251);
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.tile[data-value='X']::before,
+.tile[data-value='O']::before {
+	animation: spin 0.5s ease-in-out forwards;
+}
+
+
+
+.tile[data-value='X']::before {
+	content: 'X';
+    color: #fa7272;
+}
+
+.tile[data-value='O']::before {
+	content: 'O';
+    color:rgb(99, 92, 222)
+}
+
+.container {
+	display: flex;
+	gap: 2rem;
+}
+
+#new-game {
+	font-size: 1rem;
+	font-weight: bold;
+	background-color: rgb(113, 106, 249);
+	padding: 0.5rem 1.5rem;
+	border-radius: 100vmax;
+	color: rgb(242, 235, 249);
+	border: none;
+	transition: transform 0.3s ease-in-out;
+}
+
+#new-game:hover {
+	transform: scale(1.05);
+}
